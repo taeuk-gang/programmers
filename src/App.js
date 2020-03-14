@@ -11,7 +11,17 @@ class App {
       $target,
       onSearch: keyword => {
         this.showLoading();
-        api.fetchCats(keyword).then(({ data }) => this.setState(data)).then(() => this.hideLoading());
+        api.fetchCats(keyword)
+        .then(({ data }) => this.setState(data))
+        .then(() => this.hideLoading())
+        .catch(err => {
+          const modalMessage = document.createElement(`modal-message`);
+          modalMessage.text = `데이터를 불러오지 못했습니다.`
+          this.hideLoading();
+          
+          document.querySelector(`#App`).appendChild(modalMessage);
+          console.error(err);
+        });
       }
     });
 
@@ -41,9 +51,15 @@ class App {
   }
 
   setState(nextData) {
-    console.log(this);
-    this.data = nextData;
+    const modalMessage = document.createElement(`modal-message`);
+    modalMessage.text = `검색 결과가 없습니다.`
+
+    this.data = nextData;   
     this.searchResult.setState(nextData);
+
+    if (this.data === []) {
+      document.querySelector(`#App`).appendChild(modalMessage);
+    };
   }
 
   showLoading() {
