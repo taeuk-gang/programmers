@@ -53,7 +53,7 @@ class App {
   setState(nextData) {
     const modalMessage = document.createElement(`modal-message`);
     modalMessage.text = `검색 결과가 없습니다.`
-
+    document.querySelector(`.SearchResult`).innerHTML = ``;
     this.data = nextData;   
     this.searchResult.setState(nextData);
 
