@@ -22,7 +22,21 @@ class App {
           document.querySelector(`#App`).appendChild(modalMessage);
           console.error(err);
         });
-      }
+      },
+      onSearchRandom: () => {
+        this.showLoading();
+        api.fetchRandom()
+        .then(({ data }) => this.setState(data))
+        .then(() => this.hideLoading())
+        .catch(err => {
+          const modalMessage = document.createElement(`modal-message`);
+          modalMessage.text = `데이터를 불러오지 못했습니다.`
+          this.hideLoading();
+          
+          document.querySelector(`#App`).appendChild(modalMessage);
+          console.error(err);
+        });
+      },
     });
 
     this.searchResult = new SearchResult({

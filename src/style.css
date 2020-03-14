@@ -130,6 +130,23 @@ body {
   animation: spin .75s linear infinite;
 }
 
+.search-wrap {
+  display: grid;
+  grid-template-columns: 90% 10%;
+}
+
+.search-wrap .random-button {  
+  border: none;
+  border-radius: 3px;
+  background-color: transparent;
+  font-size: 1.5rem;
+  color: rgba(0, 0, 0, 0.7);
+}
+
+.search-wrap .random-button:hover {
+  color: rgba(0, 0, 0, 1);
+}
+
 @media (max-width: 992px) {
   .SearchResult {
     display: grid;
