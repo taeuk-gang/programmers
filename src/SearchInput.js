@@ -26,8 +26,6 @@ class SearchInput {
     $randomButton.className = "random-button";
     $target.appendChild($wrapDiv);
 
-
-
     $searchInput.addEventListener("keyup", e => {
       if (e.keyCode === 13) {        
         onSearch(e.target.value);

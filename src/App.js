@@ -13,21 +13,20 @@ class App {
         this.showLoading();
         api.fetchCats(keyword)
         .then(({ data }) => this.setState(data))
-        .then(() => this.hideLoading())
         .catch(err => {
           const modalMessage = document.createElement(`modal-message`);
-          modalMessage.text = `데이터를 불러오지 못했습니다.`
-          this.hideLoading();
+          modalMessage.text = `데이터를 불러오지 못했습니다.`          
           
           document.querySelector(`#App`).appendChild(modalMessage);
           console.error(err);
+        }).finally(() => {
+          this.hideLoading();
         });
       },
       onSearchRandom: () => {
         this.showLoading();
         api.fetchRandom()
         .then(({ data }) => this.setState(data))
-        .then(() => this.hideLoading())
         .catch(err => {
           const modalMessage = document.createElement(`modal-message`);
           modalMessage.text = `데이터를 불러오지 못했습니다.`
@@ -35,6 +34,8 @@ class App {
           
           document.querySelector(`#App`).appendChild(modalMessage);
           console.error(err);
+        }).finally(() => {
+          this.hideLoading();
         });
       },
     });
@@ -66,12 +67,14 @@ class App {
 
   setState(nextData) {
     const modalMessage = document.createElement(`modal-message`);
-    modalMessage.text = `검색 결과가 없습니다.`
+    
+    modalMessage.text = `검색 결과가 없습니다.`   
     document.querySelector(`.SearchResult`).innerHTML = ``;
+
     this.data = nextData;   
     this.searchResult.setState(nextData);
 
-    if (this.data === []) {
+    if (this.data === undefined || this.data.length === 0) {
       document.querySelector(`#App`).appendChild(modalMessage);
     };
   }
