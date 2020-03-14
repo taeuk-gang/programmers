@@ -13,10 +13,16 @@ class ImageInfo {
     this.render();
   }
 
-  setState(nextData) {
-    this.data = nextData;
-    this.render();
+  async setState(nextData) {
+    let catData;
 
+    this.data = nextData;
+    catData = await api.fetchCat(this.data.image.id);    
+    this.data.image.temperament = catData.data.temperament;
+    this.data.image.origin = catData.data.origin;
+
+    this.render();
+    
     document.querySelector(`.ImageInfo`).addEventListener(`click`, this.clickModalWrap.bind(this));
     document.querySelector(`.ImageInfo .close`).addEventListener(`click`, this.clickX.bind(this));
 
