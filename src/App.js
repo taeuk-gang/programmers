@@ -10,7 +10,8 @@ class App {
     this.searchInput = new SearchInput({
       $target,
       onSearch: keyword => {
-        api.fetchCats(keyword).then(({ data }) => this.setState(data));
+        this.showLoading();
+        api.fetchCats(keyword).then(({ data }) => this.setState(data)).then(() => this.hideLoading());
       }
     });
 
@@ -32,11 +33,24 @@ class App {
         image: null
       }
     });
+
+    this.spinner = new Spinner({
+      $target,
+      data: {}
+    });
   }
 
   setState(nextData) {
     console.log(this);
     this.data = nextData;
     this.searchResult.setState(nextData);
+  }
+
+  showLoading() {
+    document.querySelector(`.spinner-wrap`).style.display = `flex`;
+  }
+
+  hideLoading() {
+    document.querySelector(`.spinner-wrap`).style.display = `none`;
   }
 }

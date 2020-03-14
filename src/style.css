@@ -101,6 +101,35 @@ body {
   object-fit: contain;
 }
 
+.spinner-wrap {
+  display: none;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  width: 200px;
+  height: 200px;
+  /* display: flex; */
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+.spinner-border {
+  display: inline-block;  
+  width: 2rem;
+  height: 2rem;
+  vertical-align: text-bottom;
+  border: .25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  animation: spin .75s linear infinite;
+}
+
 @media (max-width: 992px) {
   .SearchResult {
     display: grid;
@@ -133,5 +162,15 @@ body {
   body {
     background-color: #000;
     color: white;
+  }
+}
+
+@keyframes spin {
+  from {
+      transform:rotate(0deg);
+  }
+
+  to {
+      transform:rotate(360deg);
   }
 }
