@@ -19,6 +19,16 @@ body * {
   box-sizing: inherit;
 }
 
+body {
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+
 #App {
   margin: 1.5em auto;
   max-width: 1200px;
