@@ -17,7 +17,9 @@ class ImageInfo {
     let catData;
 
     this.data = nextData;
-    catData = await api.fetchCat(this.data.image.id);    
+    document.querySelector(`.spinner-wrap`).style.display = `flex`;
+    catData = await api.fetchCat(this.data.image.id);   
+    document.querySelector(`.spinner-wrap`).style.display = `none`; 
     this.data.image.temperament = catData.data.temperament;
     this.data.image.origin = catData.data.origin;
 

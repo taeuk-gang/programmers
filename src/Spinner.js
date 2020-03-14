@@ -4,7 +4,7 @@ class Spinner {
     this.$spinnerDiv = $spinnerDiv;
     $spinnerDiv.innerHTML = `    
     <span class="spinner-border"></span>
-    <p>검색 중...</p>
+    <p>로딩 중...</p>
     `;
     $spinnerDiv.className = "spinner-wrap";
     $target.appendChild($spinnerDiv);
